@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Portal</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <main class="container">
+        <section class="registration-card">
+            <div class="header">
+                <p class="tag">STUDENT PORTAL</p>
+                <h1>Student Registration</h1>
+                <p class="subtitle">
+                    Enter your details to complete the registration.
+                </p>
+            </div>
+
+            <form action="/register" method="POST">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="college">College</label>
+                    <input
+                        type="text"
+                        id="college"
+                        name="college"
+                        placeholder="Enter your college name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input
+                        type="text"
+                        id="course"
+                        name="course"
+                        placeholder="e.g. B.Tech Computer Science"
+                        required
+                    >
+                </div>
+
+                <button type="submit">Register Student</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

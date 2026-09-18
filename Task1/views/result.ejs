@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <main class="container">
+        <section class="registration-card result-card">
+
+            <div class="header">
+                <p class="tag">REGISTRATION COMPLETE</p>
+                <h1>Welcome, <%= name %>!</h1>
+                <p class="subtitle">
+                    Your registration details have been received successfully.
+                </p>
+            </div>
+
+            <div class="student-details">
+
+                <div class="detail-item">
+                    <span>Full Name</span>
+                    <strong><%= name %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Email Address</span>
+                    <strong><%= email %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>College</span>
+                    <strong><%= college %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Course</span>
+                    <strong><%= course %></strong>
+                </div>
+
+            </div>
+
+            <a href="/" class="secondary-button">
+                Register Another Student
+            </a>
+
+        </section>
+    </main>
+</body>
+</html>
