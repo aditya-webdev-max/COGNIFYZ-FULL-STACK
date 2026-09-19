@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Students | Task 2</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="registration-card">
+
+            <div class="header">
+                <p class="tag">COGNIFYZ • TASK 2</p>
+
+                <h1>Registered Students</h1>
+
+                <p class="subtitle">
+                    Temporary server-side registration data.
+                </p>
+            </div>
+
+
+            <% if (registrations.length === 0) { %>
+
+                <div class="empty-state">
+                    <p>No students have been registered yet.</p>
+                </div>
+
+            <% } else { %>
+
+                <div class="student-list">
+
+                    <% registrations.forEach(student => { %>
+
+                        <article class="student-item">
+
+                            <div class="student-number">
+                                #<%= student.id %>
+                            </div>
+
+                            <div class="student-info">
+
+                                <h2>
+                                    <%= student.name %>
+                                </h2>
+
+                                <p>
+                                    <strong>Email:</strong>
+                                    <%= student.email %>
+                                </p>
+
+                                <p>
+                                    <strong>College:</strong>
+                                    <%= student.college %>
+                                </p>
+
+                                <p>
+                                    <strong>Course:</strong>
+                                    <%= student.course %>
+                                </p>
+
+                                <p>
+                                    <strong>Phone:</strong>
+                                    <%= student.phone %>
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+
+            <a href="/" class="secondary-button">
+                Register Another Student
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

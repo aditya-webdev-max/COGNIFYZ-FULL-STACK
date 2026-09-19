@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful | Task 2</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="registration-card result-card">
+
+            <div class="header">
+                <p class="tag">REGISTRATION COMPLETE</p>
+
+                <h1>Welcome, <%= student.name %>!</h1>
+
+                <p class="subtitle">
+                    Your registration has been completed successfully.
+                </p>
+            </div>
+
+
+            <div class="student-details">
+
+                <div class="detail-item">
+                    <span>Full Name</span>
+                    <strong><%= student.name %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Email Address</span>
+                    <strong><%= student.email %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>College</span>
+                    <strong><%= student.college %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Course</span>
+                    <strong><%= student.course %></strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Phone Number</span>
+                    <strong><%= student.phone %></strong>
+                </div>
+
+            </div>
+
+
+            <a href="/" class="secondary-button">
+                Register Another Student
+            </a>
+
+            <a href="/students" class="view-link">
+                View Temporary Registrations
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

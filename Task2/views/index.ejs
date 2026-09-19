@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration | Task 2</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="registration-card">
+
+            <div class="header">
+                <p class="tag">COGNIFYZ • TASK 2</p>
+
+                <h1>Student Registration</h1>
+
+                <p class="subtitle">
+                    Complete the registration form with accurate information.
+                </p>
+            </div>
+
+
+            <!-- Server-side validation errors -->
+
+            <% if (errors.length > 0) { %>
+
+                <div class="error-box">
+
+                    <strong>Please correct the following:</strong>
+
+                    <ul>
+                        <% errors.forEach(error => { %>
+                            <li><%= error %></li>
+                        <% }) %>
+                    </ul>
+
+                </div>
+
+            <% } %>
+
+
+            <!-- Registration Form -->
+
+            <form
+                action="/register"
+                method="POST"
+                id="registrationForm"
+                onsubmit="return validateForm()"
+                novalidate
+            >
+
+                <!-- Full Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        value="<%= formData.name || '' %>"
+                        autocomplete="name"
+                    >
+
+                    <small id="nameError"></small>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        value="<%= formData.email || '' %>"
+                        autocomplete="email"
+                    >
+
+                    <small id="emailError"></small>
+
+                </div>
+
+
+                <!-- College -->
+
+                <div class="form-group">
+
+                    <label for="college">
+                        College
+                    </label>
+
+                    <input
+                        type="text"
+                        id="college"
+                        name="college"
+                        placeholder="Enter your college name"
+                        value="<%= formData.college || '' %>"
+                    >
+
+                    <small id="collegeError"></small>
+
+                </div>
+
+
+                <!-- Course -->
+
+                <div class="form-group">
+
+                    <label for="course">
+                        Course
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        name="course"
+                        placeholder="e.g. B.Tech Computer Science"
+                        value="<%= formData.course || '' %>"
+                    >
+
+                    <small id="courseError"></small>
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter 10-digit phone number"
+                        maxlength="10"
+                        inputmode="numeric"
+                        value="<%= formData.phone || '' %>"
+                        autocomplete="tel"
+                    >
+
+                    <small id="phoneError"></small>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a strong password"
+                        autocomplete="new-password"
+                    >
+
+                    <small id="passwordError"></small>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Re-enter your password"
+                        autocomplete="new-password"
+                    >
+
+                    <small id="confirmPasswordError"></small>
+
+                </div>
+
+
+                <button type="submit">
+                    Register Student
+                </button>
+
+            </form>
+
+
+            <a href="/students" class="view-link">
+                View Temporary Registrations
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        // Get form elements
+
+        const nameInput =
+            document.getElementById("name");
+
+        const emailInput =
+            document.getElementById("email");
+
+        const collegeInput =
+            document.getElementById("college");
+
+        const courseInput =
+            document.getElementById("course");
+
+        const phoneInput =
+            document.getElementById("phone");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const confirmPasswordInput =
+            document.getElementById("confirmPassword");
+
+
+        // Show validation error
+
+        function showError(input, errorId, message) {
+
+            input.classList.add("input-error");
+
+            document.getElementById(errorId).textContent = message;
+
+        }
+
+
+        // Clear validation error
+
+        function clearError(input, errorId) {
+
+            input.classList.remove("input-error");
+
+            document.getElementById(errorId).textContent = "";
+
+        }
+
+
+        // Validate name
+
+        function validateName() {
+
+            const name = nameInput.value.trim();
+
+            if (name.length < 3) {
+
+                showError(
+                    nameInput,
+                    "nameError",
+                    "Name must contain at least 3 characters."
+                );
+
+                return false;
+            }
+
+            clearError(nameInput, "nameError");
+
+            return true;
+        }
+
+
+        // Validate email
+
+        function validateEmail() {
+
+            const email = emailInput.value.trim();
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+
+                showError(
+                    emailInput,
+                    "emailError",
+                    "Please enter a valid email address."
+                );
+
+                return false;
+            }
+
+            clearError(emailInput, "emailError");
+
+            return true;
+        }
+
+
+        // Validate college
+
+        function validateCollege() {
+
+            const college = collegeInput.value.trim();
+
+            if (college.length < 3) {
+
+                showError(
+                    collegeInput,
+                    "collegeError",
+                    "College name must contain at least 3 characters."
+                );
+
+                return false;
+            }
+
+            clearError(collegeInput, "collegeError");
+
+            return true;
+        }
+
+
+        // Validate course
+
+        function validateCourse() {
+
+            const course = courseInput.value.trim();
+
+            if (course.length < 2) {
+
+                showError(
+                    courseInput,
+                    "courseError",
+                    "Please enter a valid course."
+                );
+
+                return false;
+            }
+
+            clearError(courseInput, "courseError");
+
+            return true;
+        }
+
+
+        // Validate phone
+
+        function validatePhone() {
+
+            const phone = phoneInput.value.trim();
+
+            const phonePattern =
+                /^[0-9]{10}$/;
+
+            if (!phonePattern.test(phone)) {
+
+                showError(
+                    phoneInput,
+                    "phoneError",
+                    "Phone number must contain exactly 10 digits."
+                );
+
+                return false;
+            }
+
+            clearError(phoneInput, "phoneError");
+
+            return true;
+        }
+
+
+        // Validate password
+
+        function validatePassword() {
+
+            const password = passwordInput.value;
+
+            const strongPasswordPattern =
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+            if (!strongPasswordPattern.test(password)) {
+
+                showError(
+                    passwordInput,
+                    "passwordError",
+                    "Use 8+ characters with uppercase, lowercase and a number."
+                );
+
+                return false;
+            }
+
+            clearError(passwordInput, "passwordError");
+
+            return true;
+        }
+
+
+        // Validate confirm password
+
+        function validateConfirmPassword() {
+
+            if (
+                confirmPasswordInput.value !==
+                passwordInput.value
+            ) {
+
+                showError(
+                    confirmPasswordInput,
+                    "confirmPasswordError",
+                    "Passwords do not match."
+                );
+
+                return false;
+            }
+
+            clearError(
+                confirmPasswordInput,
+                "confirmPasswordError"
+            );
+
+            return true;
+        }
+
+
+        // Final form validation
+
+        function validateForm() {
+
+            const nameValid =
+                validateName();
+
+            const emailValid =
+                validateEmail();
+
+            const collegeValid =
+                validateCollege();
+
+            const courseValid =
+                validateCourse();
+
+            const phoneValid =
+                validatePhone();
+
+            const passwordValid =
+                validatePassword();
+
+            const confirmPasswordValid =
+                validateConfirmPassword();
+
+
+            return (
+                nameValid &&
+                emailValid &&
+                collegeValid &&
+                courseValid &&
+                phoneValid &&
+                passwordValid &&
+                confirmPasswordValid
+            );
+        }
+
+
+        // Real-time validation
+
+        nameInput.addEventListener(
+            "input",
+            validateName
+        );
+
+        emailInput.addEventListener(
+            "input",
+            validateEmail
+        );
+
+        collegeInput.addEventListener(
+            "input",
+            validateCollege
+        );
+
+        courseInput.addEventListener(
+            "input",
+            validateCourse
+        );
+
+        phoneInput.addEventListener(
+            "input",
+            validatePhone
+        );
+
+        passwordInput.addEventListener(
+            "input",
+            validatePassword
+        );
+
+        confirmPasswordInput.addEventListener(
+            "input",
+            validateConfirmPassword
+        );
+
+
+        // Allow only numbers in phone field
+
+        phoneInput.addEventListener(
+            "input",
+            () => {
+
+                phoneInput.value =
+                    phoneInput.value.replace(/\D/g, "");
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
