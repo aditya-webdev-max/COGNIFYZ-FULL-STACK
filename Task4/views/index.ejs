@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | Task 4</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">StudentProfile</a>
+
+            <div class="nav-links">
+                <a href="#register">Register</a>
+                <a href="#preview">Preview</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Main Section -->
+    <main>
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="tag">COGNIFYZ • TASK 4</p>
+
+                <h1>
+                    Build your student
+                    <span>profile.</span>
+                </h1>
+
+                <p>
+                    Create a professional student profile with
+                    real-time validation, password security,
+                    dynamic DOM updates and client-side routing.
+                </p>
+
+                <a href="#register" class="hero-button">
+                    Create Profile
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Registration Section -->
+        <section id="register" class="section">
+
+            <div class="section-heading">
+
+                <p class="tag">REGISTRATION</p>
+
+                <h2>Create your profile</h2>
+
+                <p>
+                    Complete the form below. Your profile preview
+                    will update dynamically as you enter information.
+                </p>
+
+            </div>
+
+
+            <div class="form-container">
+
+                <form id="profileForm" novalidate>
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                        >
+
+                        <small
+                            id="fullNameError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="student@example.com"
+                            autocomplete="email"
+                        >
+
+                        <small
+                            id="emailError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="10-digit mobile number"
+                            maxlength="10"
+                            autocomplete="tel"
+                        >
+
+                        <small
+                            id="phoneError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Course -->
+                    <div class="form-group">
+
+                        <label for="course">
+                            Course
+                        </label>
+
+                        <select id="course" name="course">
+
+                            <option value="">
+                                Select your course
+                            </option>
+
+                            <option value="B.Tech CSE">
+                                B.Tech CSE
+                            </option>
+
+                            <option value="B.Tech IT">
+                                B.Tech IT
+                            </option>
+
+                            <option value="BCA">
+                                BCA
+                            </option>
+
+                            <option value="MCA">
+                                MCA
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                        <small
+                            id="courseError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Skills -->
+                    <div class="form-group">
+
+                        <label for="skills">
+                            Primary Skill
+                        </label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            placeholder="e.g. JavaScript, Python"
+                        >
+
+                        <small
+                            id="skillsError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                        >
+
+                        <div class="password-rules">
+
+                            <p id="lengthRule">
+                                <span>○</span> At least 8 characters
+                            </p>
+
+                            <p id="uppercaseRule">
+                                <span>○</span> One uppercase letter
+                            </p>
+
+                            <p id="numberRule">
+                                <span>○</span> One number
+                            </p>
+
+                            <p id="specialRule">
+                                <span>○</span> One special character
+                            </p>
+
+                        </div>
+
+                        <small
+                            id="passwordError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                        >
+
+                        <small
+                            id="confirmPasswordError"
+                            class="error-message"
+                        ></small>
+
+                    </div>
+
+
+                    <!-- Terms -->
+                    <div class="checkbox-group">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            name="terms"
+                        >
+
+                        <label for="terms">
+                            I confirm that the information provided is
+                            correct.
+                        </label>
+
+                    </div>
+
+                    <small
+                        id="termsError"
+                        class="error-message"
+                    ></small>
+
+
+                    <!-- Submit -->
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+                        Create Student Profile
+                    </button>
+
+                </form>
+
+
+                <!-- Dynamic Profile Preview -->
+                <div
+                    id="preview"
+                    class="preview-card"
+                >
+
+                    <div class="preview-header">
+
+                        <div class="avatar" id="previewAvatar">
+                            S
+                        </div>
+
+                        <div>
+                            <p class="preview-label">
+                                LIVE PREVIEW
+                            </p>
+
+                            <h3 id="previewName">
+                                Your Name
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="preview-details">
+
+                        <div class="preview-item">
+
+                            <span>Email</span>
+
+                            <strong id="previewEmail">
+                                Not added yet
+                            </strong>
+
+                        </div>
+
+
+                        <div class="preview-item">
+
+                            <span>Phone</span>
+
+                            <strong id="previewPhone">
+                                Not added yet
+                            </strong>
+
+                        </div>
+
+
+                        <div class="preview-item">
+
+                            <span>Course</span>
+
+                            <strong id="previewCourse">
+                                Not selected
+                            </strong>
+
+                        </div>
+
+
+                        <div class="preview-item">
+
+                            <span>Primary Skill</span>
+
+                            <strong id="previewSkills">
+                                Not added yet
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="successMessage"
+                        class="success-message"
+                    >
+                        Profile created successfully!
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- About Task Section -->
+        <section class="info-section">
+
+            <div class="info-container">
+
+                <div>
+
+                    <p class="tag">TASK 4</p>
+
+                    <h2>
+                        Interactive form experience
+                    </h2>
+
+                </div>
+
+                <div class="info-grid">
+
+                    <div class="info-card">
+                        <span>01</span>
+                        <h3>Validation</h3>
+                        <p>
+                            Real-time validation checks user
+                            input before submission.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <span>02</span>
+                        <h3>Password Security</h3>
+                        <p>
+                            Password strength is checked against
+                            multiple security requirements.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <span>03</span>
+                        <h3>DOM Updates</h3>
+                        <p>
+                            The profile preview changes instantly
+                            based on form input.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 StudentProfile • Cognifyz Task 4
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="/script.js"></script>
+
+</body>
+</html>
