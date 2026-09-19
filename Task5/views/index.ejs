@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student API Dashboard | Task 5</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="logo-icon">S</span>
+                <span>StudentAPI</span>
+            </div>
+
+            <div class="nav-badge">
+                Cognifyz Task 5
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+
+            <span class="eyebrow">REST API • CRUD • FETCH</span>
+
+            <h1>
+                Student Management
+                <span>Dashboard</span>
+            </h1>
+
+            <p>
+                Manage student records through a RESTful API
+                and interact with the backend using JavaScript Fetch API.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="container main-content">
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div>
+                    <span class="stat-label">Total Students</span>
+                    <strong id="studentCount">0</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔗</div>
+                <div>
+                    <span class="stat-label">API Status</span>
+                    <strong id="apiStatus">Checking...</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div>
+                    <span class="stat-label">Operations</span>
+                    <strong>CRUD</strong>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Dashboard -->
+        <section class="dashboard-grid">
+
+            <!-- Form -->
+            <div class="panel form-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-kicker">STUDENT RECORD</span>
+                        <h2 id="formTitle">Add Student</h2>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="cancelEditBtn"
+                        class="btn btn-secondary hidden"
+                    >
+                        Cancel
+                    </button>
+                </div>
+
+
+                <form id="studentForm">
+
+                    <input type="hidden" id="studentId">
+
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter student name"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="student@example.com"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="course">Course</label>
+
+                            <select id="course" required>
+                                <option value="">Select course</option>
+                                <option value="B.Tech CSE">B.Tech CSE</option>
+                                <option value="B.Tech IT">B.Tech IT</option>
+                                <option value="BCA">BCA</option>
+                                <option value="MCA">MCA</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="skill">Primary Skill</label>
+
+                            <input
+                                type="text"
+                                id="skill"
+                                placeholder="e.g. React"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        id="submitBtn"
+                        class="btn btn-primary"
+                    >
+                        Add Student
+                    </button>
+
+                </form>
+
+
+                <div id="message" class="message"></div>
+
+            </div>
+
+
+            <!-- API Information -->
+            <div class="panel api-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <span class="panel-kicker">API ENDPOINTS</span>
+                        <h2>REST Operations</h2>
+                    </div>
+                </div>
+
+
+                <div class="endpoint-list">
+
+                    <div class="endpoint">
+                        <span class="method get">GET</span>
+                        <code>/api/students</code>
+                    </div>
+
+                    <div class="endpoint">
+                        <span class="method get">GET</span>
+                        <code>/api/students/:id</code>
+                    </div>
+
+                    <div class="endpoint">
+                        <span class="method post">POST</span>
+                        <code>/api/students</code>
+                    </div>
+
+                    <div class="endpoint">
+                        <span class="method put">PUT</span>
+                        <code>/api/students/:id</code>
+                    </div>
+
+                    <div class="endpoint">
+                        <span class="method delete">DELETE</span>
+                        <code>/api/students/:id</code>
+                    </div>
+
+                </div>
+
+
+                <div class="api-note">
+                    <strong>Frontend → API</strong>
+                    <p>
+                        This dashboard uses JavaScript
+                        <code>fetch()</code> to communicate with
+                        the Express REST API.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Student Records -->
+        <section class="records-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="panel-kicker">LIVE DATA</span>
+                    <h2>Student Records</h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshBtn"
+                    class="btn btn-secondary"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div id="loading" class="loading">
+                Loading student records...
+            </div>
+
+
+            <div id="studentList" class="student-list"></div>
+
+
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">📚</div>
+
+                <h3>No students found</h3>
+
+                <p>
+                    Add a student using the form above.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <strong>StudentAPI</strong>
+                <span>Task 5 — Full Stack Development Internship</span>
+            </div>
+
+            <span>Express.js • REST API • JavaScript Fetch</span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="/script.js"></script>
+
+</body>
+</html>
